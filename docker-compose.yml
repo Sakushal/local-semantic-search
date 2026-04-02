@@ -1,0 +1,32 @@
+services:
+  # 1. Database with Vector support
+  db:
+    image: pgvector/pgvector:pg17 # Use the latest stable 2026 version
+    container_name: insurance-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: insurance_vault
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: your_secure_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # THIS LINE AUTOMATICALLY SETS UP PGVECTOR ON FIRST RUN
+      - ./init-db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  # 2. Your Custom MCP Server
+  mcp-server:
+    build: ./mcp-server
+    container_name: insurance-mcp
+    volumes:
+      - ./policies:/data/pdfs:ro # Mount your PDFs folder here
+    environment:
+      DATABASE_URL: postgresql://admin:your_secure_password@db:5432/insurance_vault
+      SENTENCE_TRANSFORMERS_HOME: /app/model_cache
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

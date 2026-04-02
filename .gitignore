@@ -1,0 +1,19 @@
+# Local Database & Models
+storage/
+model_cache/
+ollama_models/
+postgres_data/
+
+# Confidential Data
+*.pdf
+*.docx
+*.csv
+
+# Python
+__pycache__/
+.venv/
+.env
+
+# Windows
+Thumbs.db
+.DS_Store
