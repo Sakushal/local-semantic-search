@@ -32,14 +32,15 @@ A privacy-first document retrieval system built for local office environments. T
 
 2\. \*\*Launch Database:\*\* 
 
-```bash &#x20;  docker compose up -d    ```
+``` docker compose up -d    ```
 
-3. \*\*Install Dependencies:\*\* 
-```bash &#x20;  pip install -r mcp-server/requirements.txt  ```
+3. \*\*Install Dependencies:\*\*
+
+``` pip install -r mcp-server/requirements.txt  ```
 
 4\. \*\*Run Search:\*\* 
 
-```bash &#x20;  python mcp-server/direct\_test.py```
+``` python mcp-server/direct\_test.py```
 
 
 
