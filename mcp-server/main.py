@@ -1,6 +1,4 @@
 import os
-os.environ['SENTENCE_TRANSFORMERS_HOME'] = 'D:/citizen-insurance-ai/model_cache'
-os.environ['HUGGINGFACE_HUB_CACHE'] = 'D:/citizen-insurance-ai/model_cache'
 import sys
 import logging
 import psycopg2
@@ -69,7 +67,7 @@ def search_policies(query: str):
 @mcp.tool()
 def index_policies(pdf_directory: str = None):
     """Scans the policies folder and indexes them into the Postgres vector database."""
-    raw_path = pdf_directory or os.getenv("PDF_PATH", "D:/citizen-insurance-ai/policies")
+    raw_path = pdf_directory or os.getenv("PDF_PATH", "D:/______-insurance-ai/policies")
     path = raw_path.replace("\\", "/")
     
     try:
